@@ -85,25 +85,32 @@ VALUES(1,'10A5',1,1,8),
 (10,'10A2',5,3,6),
 (11,'10A2',1,4,9);
 -- Dùng câu lệnh GROUP BY
-SELECT students.studentID,  students.studentName,subject.subName, scores.mark ,SUM(mark)
-FROM students JOIN scores  ON students.studentID=scores.studentID
-JOIN subject ON scores.subID=subject.subID
-GROUP BY studentID,StudentName,subName,mark;
+-- hiện thị tên lớp trong bảng 
+SELECT className FROM scores 
+GROUP BY className;
+-- Hiện thị tên lớp và điểm  
+SELECT className ,mark FROM scores 
+GROUP BY className, mark;
+-- thị tên lớp và tổng điểm của mỗi lớp
+SELECT className ,sum(mark) AS'Tong diem'
+FROM scores
+GROUP BY className;
+-- hiện thị tên lớp và điểm trung bình của mỗi lớp
+SELECT className ,AVG(mark) AS'DTB'
+FROM scores
+GROUP BY className;
+-- Hiện thị điểm mã học sinh và tên lớp , tổng điểm của học sinh đó ở mỗi lớp 
+SELECT studentID,className ,sum(mark) FROM
+scores GROUP BY studentID, className;
+-- hiện tên học sinh và điểm của học sinh đó 
+SELECT studentName,mark 
+ FROM students 
+ JOIN scores ON students.studentID=scores.studentID;
+-- hiện thị điểm trung bình của mỗi học sinh 
+ SELECT studentName,AVG(mark) AS'Diem TB'
+ FROM students 
+ JOIN scores ON students.studentID=scores.studentID
+ GROUP BY studentName;
 
-SELECT students.studentID, students.studentName,students.Addess, 
-COUNT(Addess) FROM demo_function.students
-GROUP BY studentID,studentName,Addess;
 
-SELECT students.studentID, students.studentName,students.Addess, scores.mark,
-COUNT(Addess)
-FROM students JOIN scores ON students.studentID=scores.studentID
-GROUP BY studentID,studentName,Addess,mark;
-
-SELECT students.studentID,students.studentName,students.Age,subject.subName,scores.mark,
-SUM(Age) AS "Tong"
-FROM students JOIN scores ON students.studentID=scores.studentID
-JOIN subject ON scores.subID=subject.subID
-WHERE subName='Ngữ Văn'
-GROUP BY studentID, studentName,Age, subName,mark
-HAVING Age>25;
 
