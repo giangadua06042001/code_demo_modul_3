@@ -18,19 +18,19 @@ VALUES(4,'Gạo nếp cái hoa vàng ',50000,15);
 INSERT INTO product(proID,proName,price,weigth)
 VALUES(5,' Gạo tám xoan',25000,15);
 -- Hàm trung bình cộng giá  AVG()
-SELECT AVG(price) FROM demo_funtion.product; 
+SELECT AVG(price) FROM demo_function.product; 
 -- Hàm tính tổng giá  sản phâm
-SELECT SUM(price) FROM demo_funtion.product; 
+SELECT SUM(price) FROM demo_function.product; 
 -- Hàm  COUNT đến số lượng sản phẩm 
-SELECT COUNT(proID) FROM demo_funtion.product;  
+SELECT COUNT(proID) FROM demo_function.product;  
 -- Hàm tìm số kg nặng nhất 
-SELECT MAX(weigth) FROM demo_funtion.product; 
+SELECT MAX(weigth) FROM demo_function.product; 
 -- Hàm tìm sản phẩm giá rẻ nhất 
-SELECT MIN(price) FROM demo_funtion.product; 
+SELECT MIN(price) FROM demo_function.product; 
 -- Hàm chuyển các chữ thành chữ  hoa 
-SELECT UCASE(proName) FROM demo_funtion.product;
+SELECT UCASE(proName) FROM demo_function.product;
 -- Hàm chuyên các chữ thành  chữ thường  
-SELECT LCASE(proName) FROM demo_funtion.product;
+SELECT LCASE(proName) FROM demo_function.product;
 -- Tạo bảng 
 CREATE TABLE students(
 studentID INT NOT NULL AUTO_INCREMENT  PRIMARY KEY,
@@ -72,7 +72,7 @@ subID INT NOT NULL,
 FOREIGN KEY(subID) REFERENCES subject(subID),
 mark INT NOT NULL
 );
-INSERT INTO scores(scoreID,className,studentID,cubID,mark)
+INSERT INTO scores(scoreID,className,studentID,subID,mark)
 VALUES(1,'10A5',1,1,8),
 (2,'10A5',2,1,5),
 (3,'10A5',3,1,9),
@@ -91,7 +91,7 @@ JOIN subject ON scores.subID=subject.subID
 GROUP BY studentID,StudentName,subName,mark;
 
 SELECT students.studentID, students.studentName,students.Addess, 
-COUNT(Addess) FROM demo_funtion.students
+COUNT(Addess) FROM demo_function.students
 GROUP BY studentID,studentName,Addess;
 
 SELECT students.studentID, students.studentName,students.Addess, scores.mark,
